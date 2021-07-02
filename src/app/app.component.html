@@ -1,0 +1,132 @@
+<div style="width: 100%;text-align: center;background: lightgray;height: 40px;font-size: 18px;margin-top: 1%;line-height: 40px;">
+  Inventory Management
+</div>
+<br>
+<br>
+<form #data='ngForm' (ngSubmit)="Fun(data)">
+
+  <!-- <header>
+    <h2>Example Responsive Form</h2>
+    <div>This form breaks at 600px and goes from a left-label form to a top-label form. At above 1200px, the labels align right.</div>
+  </header>
+   -->
+  <div>
+    <label class="desc" id="title1">Name</label>
+    <div>
+      <input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1" required ngModel [(ngModel)]="formData.name">
+    </div>
+  </div>
+    
+  <div>
+    <label class="desc" id="title3" >
+      Price
+    </label>
+    <div>
+      <input id="Field3" name="Field3" type="text" value="" tabindex="3" required ngModel [(ngModel)]="formData.price"> 
+   </div>
+  </div>
+
+  <div>
+    <label class="desc" id="title2">
+      Category
+    </label>
+    <div>
+      <input id="Field2" name="Field2" type="text" class="field text fn" value="" size="8" tabindex="1" required ngModel [(ngModel)]="formData.category">
+   </div>
+  </div>
+    
+  <div>
+    <label class="desc" id="title4" for="Field4">
+      Description
+    </label>
+  
+    <div>
+      <textarea id="Field4" name="Field4" spellcheck="true" rows="10" cols="50" tabindex="4" required ngModel [(ngModel)]="formData.msg" style="width: 50%;"></textarea>
+    </div>
+  </div>
+  <div style="text-align: center;margin-right: 12%;">
+    <button type="submit" [disabled]="data.invalid">Add</button>  
+  </div>
+
+</form>
+<br>
+<table style="width:90%;margin-left: 5%;">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let d of dataF;let i=index;">
+    <td>{{d.name}}</td>
+      <td>{{d.price}}</td>
+      <td>{{d.category}}</td>
+      <td>{{d.msg}}</td>
+      <td><button style="color: red" (click)="removeData(i)">Delete</button>
+        <button style="color: blue;margin-left: 30px" (click)="editForm(i)" data-toggle="modal" data-target="#myModal" >Edit</button>
+      </td>
+  </tr>
+</table>
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Material</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label class="desc" id="title1" for="Field1">Name</label>
+            <div>
+              <input  type="text"  size="8" tabindex="1" required [(ngModel)]="editformData.name">
+            </div>
+          </div>
+            
+          <div>
+            <label class="desc" id="title3" for="Field3">
+              Price
+            </label>
+            <div>
+              <input  type="email"  maxlength="255" tabindex="3" required ngModel [(ngModel)]="editformData.price"> 
+           </div>
+          </div>
+            
+          <div>
+            <label class="desc" id="title3" for="Field3">
+              Category
+            </label>
+            <div>
+              <input  type="email"  maxlength="255" tabindex="3" required ngModel [(ngModel)]="editformData.category"> 
+           </div>
+          </div>
+
+          <div>
+            <label class="desc" id="title4" for="Field4">
+              Description
+            </label>
+          
+            <div>
+              <textarea  rows="10" cols="50" tabindex="4" required ngModel [(ngModel)]="editformData.msg"></textarea>
+            </div>
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" (click)="update()" data-dismiss="modal">Update</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+<router-outlet></router-outlet>
